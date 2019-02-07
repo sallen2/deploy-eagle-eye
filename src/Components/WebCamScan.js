@@ -3,17 +3,12 @@ import AWS from 'aws-sdk'
 import Webcam from 'react-webcam'
 import Promise from 'bluebird'
 import Button from '@material-ui/core/Button';
+import config from '../config/config';
 
-const rek = new AWS.Rekognition({
-  credentials: {
-    secretAccessKey: process.env.SECRET_ACCESS_KEY,
-    accessKeyId: process.env.ACCESS_KEY
-  },
-  region: 'us-east-1'
-})
-const s3 = new AWS.S3({region: 'us-east-1'})
+const rek = new AWS.Rekognition(config)
+const s3 = new AWS.S3(config)
 
-const lambda = new AWS.Lambda()
+const lambda = new AWS.Lambda(config)
 
 class WebCamScan extends Component {
 
