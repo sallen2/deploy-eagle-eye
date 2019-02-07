@@ -10,12 +10,14 @@ import HowItWorks from './Components/HowItWorks';
 import TheTeam from './Components/TheTeam';
 import backupPlotly from './Assets/newplot.png';
 import AWS from 'aws-sdk'
-AWS.config.update({
-  secretAccessKey: process.env.SECRET_ACCESS_KEY,
-  accessKeyId: process.env.ACCESS_KEY,
+
+const lambda = new AWS.Lambda({
+  credentials: {
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+    accessKeyId: process.env.ACCESS_KEY
+  },
   region: 'us-east-1'
 })
-const lambda = new AWS.Lambda()
 class App extends Component {
 
   state = {
