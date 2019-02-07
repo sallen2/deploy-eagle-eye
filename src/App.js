@@ -10,11 +10,10 @@ import HowItWorks from './Components/HowItWorks';
 import TheTeam from './Components/TheTeam';
 import backupPlotly from './Assets/newplot.png';
 import AWS from 'aws-sdk'
-const myCrend = new AWS.Config()
-myCrend.update({
-  region:'us-east-1',
+AWS.config.update({
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
   accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_ACCESS_KEY
+  region: 'us-east-1'
 })
 const lambda = new AWS.Lambda()
 class App extends Component {
