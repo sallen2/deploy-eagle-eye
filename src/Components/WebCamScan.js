@@ -158,7 +158,6 @@ class WebCamScan extends Component {
     const arr = ['cam1', 'cam2', 'cam3', 'cam4']
     console.log('captured')
     const sourceImage = this.webcam.getScreenshot();
-    const s3 = new AWS.S3()
     Promise.all(arr.map(async CollectionId => {
       try {
         const data = await this.compareFaces(CollectionId, sourceImage)
