@@ -10,7 +10,7 @@ import HowItWorks from './Components/HowItWorks';
 import TheTeam from './Components/TheTeam';
 import backupPlotly from './Assets/newplot.png';
 import AWS from 'aws-sdk'
-const lambda = new AWS.Lambda()
+const lambda = new AWS.Lambda({region: 'us-east-1'})
 class App extends Component {
 
   state = {

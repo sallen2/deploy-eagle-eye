@@ -4,15 +4,8 @@ import Webcam from 'react-webcam'
 import Promise from 'bluebird'
 import Button from '@material-ui/core/Button';
 
-
-AWS.config.update({
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  region: 'us-east-1'
-})
-
-const rek = new AWS.Rekognition()
-const s3 = new AWS.S3()
+const rek = new AWS.Rekognition({region: 'us-east-1'})
+const s3 = new AWS.S3({region: 'us-east-1'})
 
 const lambda = new AWS.Lambda()
 
