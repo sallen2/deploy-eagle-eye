@@ -10,9 +10,15 @@ import HowItWorks from './Components/HowItWorks';
 import TheTeam from './Components/TheTeam';
 import backupPlotly from './Assets/newplot.png';
 import AWS from 'aws-sdk';
-import config from './config/config';
 
-const lambda = new AWS.Lambda(config)
+
+AWS.config.update({
+  accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
+  region: "us-east-1"
+})
+
+const lambda = new AWS.Lambda()
 class App extends Component {
 
   state = {
@@ -53,7 +59,7 @@ class App extends Component {
         <Description />
         <HowItWorks />
         <TheTeam />
-        <Demo  refresh={this.state.refresh} />
+        <Demo refresh={this.state.refresh} />
         {/* <img src={backupPlotly} /> */}
         <div style={{ paddingLeft: '5%' }}>
           {this.state.showCam ? <WebCamScan refresh={this.resetIframe} /> : null}

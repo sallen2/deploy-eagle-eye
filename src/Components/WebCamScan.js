@@ -3,12 +3,17 @@ import AWS from 'aws-sdk'
 import Webcam from 'react-webcam'
 import Promise from 'bluebird'
 import Button from '@material-ui/core/Button';
-import config from '../config/config';
 
-const rek = new AWS.Rekognition(config)
-const s3 = new AWS.S3(config)
+AWS.config.update({
+  accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
+  region: "us-east-1"
+})
 
-const lambda = new AWS.Lambda(config)
+const rek = new AWS.Rekognition()
+const s3 = new AWS.S3()
+
+const lambda = new AWS.Lambda()
 
 class WebCamScan extends Component {
 
@@ -207,7 +212,7 @@ class WebCamScan extends Component {
           videoConstraints={videoConstraints}
         />
         <Button variant="outlined" color="primary" onClick={this.capture}>Scan Face</Button>
-        <div style={{display:"flex", flexWrap:"wrap", justifyContent: "center"}}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
           {this.state.urlsData.map((arr, booth) => {
             if (arr.length === 0) {
               return
@@ -217,7 +222,7 @@ class WebCamScan extends Component {
                 return (
                   <div>
                     <h1>Booth: {booth + 1} </h1>
-                    <img style={{ padding:"15px", flexDirection: "row" }} key={i} alt="faces" src={url} />
+                    <img style={{ padding: "15px", flexDirection: "row" }} key={i} alt="faces" src={url} />
                   </div>
                 )
               })
